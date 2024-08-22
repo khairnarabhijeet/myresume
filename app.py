@@ -1,11 +1,11 @@
 import streamlit as st
-from transformers import AutoModelForCausalLM, AutoTokenizer
+#from transformers import AutoModelForCausalLM, AutoTokenizer
 #import torch
 
 # Load the pre-trained model and tokenizer
-model_name = "microsoft/DialoGPT-medium"
-model = AutoModelForCausalLM.from_pretrained(model_name)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+#model_name = "microsoft/DialoGPT-medium"
+#model = AutoModelForCausalLM.from_pretrained(model_name)
+#tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # Function to generate chatbot responses
 #def get_chatbot_response(user_input):
