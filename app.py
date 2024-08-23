@@ -1,4 +1,43 @@
+
 import streamlit as st
+import openai
+
+# Set up OpenAI API key
+openai.api_key = 'sk-5MknObkALbU79x97jWp0bjOWn8TQiDmOhJDyo5UK7KT3BlbkFJfIEptkb0O2ERJDBX7pnrZ0gGipCgWE372Pa4anrzQA'
+
+# Function to generate response
+def generate_response(user_input):
+    personal_info = """
+    Abhijeet K is an experienced Program Manager with over 18 years of experience in IT, specializing in Service & Solution Delivery, Program Management, Consulting, IT Transformation, and Engagement Management. He has led the development and deployment of Enterprise-level Applications, has expertise in cloud technologies, micro-service design, CI/CD, and more. He has worked with HSBC, MasterCard, and Wipro, managing large teams and budgets up to $10 million. Abhijeet is also certified in AWS Cloud Practitioner, SAFe 5.0, Scrum Master, Salesforce Developer, and Zend PHP.
+    """
+    prompt = f"{personal_info}\n\nUser: {user_input}\nChatbot:"
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=150,
+        temperature=0.7,
+    )
+    return response.choices[0].text.strip()
+
+
+
+# Set up Streamlit app
+st.title("Abhijeet's Personal Chatbot")
+
+st.write("This is a chatbot that answers questions about Abhijeet K. Feel free to ask anything!")
+
+# Input box for user to ask a question
+user_input = st.text_input("You: ", "Who is Abhijeet K?")
+
+# Generate a response when the user submits a question
+if user_input:
+    prompt = f"You are a chatbot that knows everything about Abhijeet K. Answer the following question: {user_input}"
+    response = generate_response(prompt)
+    st.text_area("Abhijeet's Chatbot:", value=response, height=150)
+
+
+
+
 #from transformers import AutoModelForCausalLM, AutoTokenizer
 #import torch
 
