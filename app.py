@@ -1,5 +1,5 @@
 
-import streamlit as
+import streamlit as st
 
 # Streamlit App Interface
 st.title("Abhijeet K - Program Manager")
