@@ -1,6 +1,8 @@
 
 import streamlit as st
 
+st.snow()
+
 # Streamlit App Interface
 st.title("Abhijeet K - Program Manager")
 
