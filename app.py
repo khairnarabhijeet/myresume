@@ -5,19 +5,20 @@ import openai
 # Set up OpenAI API key
 openai.api_key = 'sk-5MknObkALbU79x97jWp0bjOWn8TQiDmOhJDyo5UK7KT3BlbkFJfIEptkb0O2ERJDBX7pnrZ0gGipCgWE372Pa4anrzQA'
 
-# Function to generate response
-def generate_response(user_input):
-    personal_info = """
-    Abhijeet K is an experienced Program Manager with over 18 years of experience in IT, specializing in Service & Solution Delivery, Program Management, Consulting, IT Transformation, and Engagement Management. He has led the development and deployment of Enterprise-level Applications, has expertise in cloud technologies, micro-service design, CI/CD, and more. He has worked with HSBC, MasterCard, and Wipro, managing large teams and budgets up to $10 million. Abhijeet is also certified in AWS Cloud Practitioner, SAFe 5.0, Scrum Master, Salesforce Developer, and Zend PHP.
-    """
-    prompt = f"{personal_info}\n\nUser: {user_input}\nChatbot:"
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150,
+
+def generate_response(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # or "gpt-4" if available and desired
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that knows everything about Abhijeet K."},
+            {"role": "user", "content": prompt}
+        ],
         temperature=0.7,
+        max_tokens=150,
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message['content'].strip()
+    
+
 
 
 
