@@ -1,6 +1,31 @@
 
 import streamlit as st
 
+#This code block is used for AI CHatbot
+import openai
+#Function to get AI response
+def get_ai_response(prompt):
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=150
+    )
+    return response.choices[0].text.strip()
+
+# Streamlit app configuration
+st.title("AI Chatbot - About Abhijeet")
+
+# User input
+user_input = st.text_input("Ask me anything about Abhijeet:")
+openai.api_key = "sk-CyuTvgjWvDO4Bj7hdBUmzuWGbmYCtSRlTKILwDRt73T3BlbkFJ95bUA_EIYbuCdbGk1hSqBIm8vG-c-LuJd_VJcWW9kA"
+# Response generation
+if user_input:
+    prompt = f"User asked: {user_input}\n\nProvide a response based on the following details:\n\n{about_me}\n\nResponse:"
+    response = get_ai_response(prompt)
+    st.write(response)
+
+#End of code block used for AI Chatbot 
+
 # Streamlit App Interface
 st.title("Abhijeet K - Program Manager")
 
