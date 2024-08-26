@@ -3,6 +3,12 @@ import streamlit as st
 
 #This code block is used for AI CHatbot
 import openai
+
+about_me = """
+I'm Abhijeet K, a Program Manager with over 18 years of experience in the IT industry, specializing in banking domain programs.
+I have managed large teams, driven enterprise-level application development and deployment, and I hold certifications in AWS Cloud Practitioner, 
+SAFe 5.0, Scrum Master, Salesforce Developer, and Zend PHP.
+"""
 #Function to get AI response
 def get_ai_response(prompt):
     response = openai.Completion.create(
@@ -19,6 +25,8 @@ st.title("AI Chatbot - About Abhijeet")
 user_input = st.text_input("Ask me anything about Abhijeet:")
 openai.api_key = "sk-CyuTvgjWvDO4Bj7hdBUmzuWGbmYCtSRlTKILwDRt73T3BlbkFJ95bUA_EIYbuCdbGk1hSqBIm8vG-c-LuJd_VJcWW9kA"
 # Response generation
+
+
 if user_input:
     prompt = f"User asked: {user_input}\n\nProvide a response based on the following details:\n\n{about_me}\n\nResponse:"
     response = get_ai_response(prompt)
