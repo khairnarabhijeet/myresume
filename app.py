@@ -1,5 +1,6 @@
 
 import streamlit as st
+st.set_page_config(page_title="Resume - Abhijeet K", page_icon=":briefcase:")
 
 #This code block is used for AI CHatbot
 import openai
@@ -11,14 +12,17 @@ I have managed large teams, driven enterprise-level application development and 
 SAFe 5.0, Scrum Master, Salesforce Developer, and Zend PHP.
 """
 
-# Function to get AI response
 def get_ai_response(prompt):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # Use "gpt-4" if you have access
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
         max_tokens=150
     )
-    return response.choices[0].text.strip()
+    return response['choices'][0]['message']['content']
+    
 
 # Streamlit app configuration
 st.title("AI Chatbot - About Abhijeet")
